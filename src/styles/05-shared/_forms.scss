@@ -1,0 +1,183 @@
+.form-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 30px;
+    @include themify($themes) {
+        color: themed('textColor');
+    }
+
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    textarea:-webkit-autofill,
+    textarea:-webkit-autofill:hover,
+    textarea:-webkit-autofill:focus,
+    select:-webkit-autofill,
+    select:-webkit-autofill:hover,
+    select:-webkit-autofill:focus {
+        transition: background-color 5000s ease-in-out 0s;
+        -webkit-text-fill-color: #333;
+        -webkit-box-shadow: 0 0 0px 1000px #333 inset;
+    }
+
+    .form-title {
+        white-space: nowrap;
+        font-weight: 700;
+        width: auto !important;
+        @include themify($themes) {
+            color: themed('primaryColor');
+        }
+    }
+
+    .logo-thin {
+        font-weight: 200;
+    }
+
+    p {
+        margin: 0;
+        font-size: 14px;
+        @include themify($themes) {
+            color: themed('textColorLight');
+        }
+    }
+
+    .form-row {
+        display: grid;
+        width: 100%;
+    }
+
+    .form-col {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .icon-list-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .icon-container {
+            transition: 0.2s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50px;
+            width: 50px;
+            height: 50px;
+            margin: 0 6px;
+            box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+            @include themify($themes) {
+                color: themed('headerColor');
+            }
+
+            &.google svg {
+                height: 25px !important;
+                width: 25px !important;
+            }
+
+            &:hover {
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .form-help-link {
+        transition: 0.2s ease;
+        position: relative;
+        font-size: 14px;
+        @include themify($themes) {
+            color: themed('textColorLight');
+        }
+
+        &:before {
+            transition: 0.2s ease;
+            content: '';
+            position: absolute;
+            bottom: 10%;
+            width: 100%;
+            height: 2px;
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        &:hover {
+            cursor: pointer;
+            @include themify($themes) {
+                color: themed('primaryColor');
+            }
+
+            &:before {
+                @include themify($themes) {
+                    background-color: themed('primaryColor');
+                }
+            }
+        }
+    }
+
+    .form-icon-text-input-container {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+
+        svg {
+            position: absolute;
+            left: 15px;
+            height: 15px !important;
+            width: 15px !important;
+
+            path {
+                @include themify($themes) {
+                    fill: themed('textColorLighter');
+                }
+            }
+        }
+
+        input {
+            transition: 0.2s ease;
+            padding: 16px 20px;
+            padding-left: 40px;
+            border: none;
+            border-radius: 3px;
+            background: #f2f5f5;
+            font-size: 14px;
+            color: #666;
+            width: 100%;
+
+            &:focus {
+                color: #555;
+                outline: none;
+                box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+                    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+            }
+
+            &::placeholder {
+                @include themify($themes) {
+                    color: themed('textColorLight');
+                }
+            }
+
+            &.error {
+                background: #ffeded;
+            }
+        }
+    }
+}
+
+#login-form {
+    width: 500px;
+
+    .inputs-container {
+        width: 300px;
+    }
+}
+
+#register-form {
+    width: 500px;
+}

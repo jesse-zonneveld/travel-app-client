@@ -1,26 +1,80 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+/**
+ * @file app.tsx
+ * @author Jesse Zonneveld
+ * @description App
+ */
+
+/* --------------------------------- IMPORTS -------------------------------- */
+
+import { BrowserRouter as Router } from 'react-router-dom';
+import { store } from './redux/store';
+import { Provider } from 'react-redux';
+import Header from './components/layout/header/Header';
+import AllRoutes from './routes/AllRoutes';
+import clsx from 'clsx';
+import { useAppDispatch, useAppSelector } from './redux/hooks';
+import { ResponsiveMode, setResponsiveMode } from './redux/slices/ResponsiveSlice';
+
+/* -------------------------------------------------------------------------- */
+
+/* -------------------------------- COMPONENT ------------------------------- */
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    const theme = useAppSelector((state) => state.theme);
+    const dispatch = useAppDispatch();
+
+    const getRespMode = () => {
+        let mode: ResponsiveMode;
+
+        const width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+
+        if (width <= 720) {
+            mode = 'mobile';
+        } else if (width <= 1040) {
+            mode = 'tablet';
+        } else {
+            mode = 'desktop';
+        }
+
+        return mode;
+    };
+
+    window.addEventListener('resize', () => {
+        dispatch(setResponsiveMode(getRespMode()));
+    });
+
+    return (
+        <div
+            className={clsx('app', {
+                'theme-default': theme.mode === 'default',
+                'theme-light': theme.mode === 'light',
+                'theme-dark': theme.mode === 'dark',
+            })}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+            <Header />
+            <div className='main-content'>
+                <AllRoutes />
+            </div>
+        </div>
+    );
 }
 
-export default App;
+/* -------------------------------------------------------------------------- */
+
+/* --------------------------------- WRAPPER -------------------------------- */
+
+const AppWrapper = () => (
+    <Provider store={store}>
+        <Router>
+            <App />
+        </Router>
+    </Provider>
+);
+
+/* -------------------------------------------------------------------------- */
+
+/* --------------------------------- EXPORTS -------------------------------- */
+
+export default AppWrapper;
+
+/* -------------------------------------------------------------------------- */

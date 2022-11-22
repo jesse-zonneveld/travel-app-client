@@ -1,0 +1,36 @@
+@use '../01-config/variables';
+
+.btn {
+    transition: 0.2s ease;
+    font-size: 13px;
+    padding: 20px 50px;
+    border-radius: 50px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    white-space: nowrap;
+
+    &:hover {
+        transform: scale(1.05);
+        cursor: pointer;
+    }
+}
+
+.btn-primary {
+    border: none;
+    @include themify($themes) {
+        background-color: themed('btnPrimaryBgColor');
+        color: themed('btnPrimaryColor');
+    }
+}
+
+.btn-trans {
+    margin: 10px;
+    border-width: 2px;
+    border-style: solid;
+    @include themify($themes) {
+        background-color: themed('btnTransparentBgColor');
+        color: themed('btnTransparentColor');
+        border-color: themed('btnTransparentColor');
+    }
+}

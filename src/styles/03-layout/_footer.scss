@@ -1,0 +1,15 @@
+.main-footer {
+    height: 50px;
+    width: 100%;
+    padding: 0 30px;
+    display: flex;
+    align-items: center;
+    @include themify($themes) {
+        background-color: themed('headerColor');
+        color: themed('primaryColor');
+    }
+
+    &.hide {
+        display: none;
+    }
+}

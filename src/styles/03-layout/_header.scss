@@ -1,0 +1,231 @@
+@use '../01-config/variables';
+
+.main-header {
+    position: fixed;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0px 30px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.15);
+    height: 60px;
+
+    @include themify($themes) {
+        color: themed('textColor');
+        background-color: themed('headerColor');
+    }
+
+    .logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        letter-spacing: 1px;
+        transition: all 0.2s;
+        font-size: 1.8rem;
+        font-family: $secondary-font;
+        margin: 0;
+        height: 100%;
+        @include themify($themes) {
+            color: themed('primaryColor');
+        }
+
+        &:hover {
+            cursor: pointer;
+            @include themify($themes) {
+                color: themed('secondaryColor');
+            }
+        }
+
+        .logo-bold {
+            font-weight: 500;
+        }
+
+        .logo-thin {
+            font-weight: 200;
+        }
+    }
+
+    .main-nav {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        width: 100%;
+        height: 60px;
+        @include themify($themes) {
+            color: themed('primaryColor');
+        }
+
+        a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            transition: 0.2s ease;
+            height: 100%;
+            font-weight: 400;
+
+            &:hover {
+                cursor: pointer;
+                @include themify($themes) {
+                    color: themed('textColorLightest');
+                    background-color: themed('primaryColor');
+                }
+            }
+        }
+    }
+
+    .search-bar {
+        max-width: 300px;
+        margin: 0 10px;
+
+        input {
+            padding: 6px;
+            border: 1px solid grey;
+            float: left;
+            width: 80%;
+            background: #f1f1f1;
+            font-size: 14px;
+            border-width: 2px;
+            border-style: solid;
+            @include themify($themes) {
+                border-color: themed('primaryColor');
+            }
+
+            &:focus {
+                outline: none;
+            }
+        }
+
+        button {
+            float: left;
+            width: 20%;
+            padding: 6px;
+            color: white;
+            font-size: 14px;
+            border-left: none;
+            border-width: 2px;
+            border-style: solid;
+            @include themify($themes) {
+                background-color: themed('primaryColor');
+                border-color: themed('primaryColor');
+            }
+
+            svg {
+                transition: 0.2s ease;
+            }
+
+            &:hover {
+                cursor: pointer;
+
+                svg {
+                    transform: scale(1.2);
+                }
+            }
+        }
+    }
+
+    .drop-down-toggle {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        transition: 0.2s ease;
+        height: 100%;
+
+        .title-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            cursor: pointer;
+
+            .title {
+                font-weight: 400;
+                transition: 0.2s ease;
+            }
+
+            svg {
+                padding-left: 5px;
+            }
+        }
+
+        &:hover {
+            @include themify($themes) {
+                background-color: themed('primaryColor');
+            }
+
+            .title {
+                @include themify($themes) {
+                    color: themed('secondaryColor');
+                }
+            }
+
+            svg path {
+                @include themify($themes) {
+                    fill: themed('secondaryColor');
+                }
+            }
+        }
+
+        svg path {
+            @include themify($themes) {
+                fill: themed('primaryColor');
+            }
+
+            transition: 0.2s ease;
+        }
+
+        .drop-down-box-container {
+            display: none;
+            position: absolute;
+            left: 0;
+            top: 60px;
+            padding: 10px;
+            min-width: 100%;
+            @include themify($themes) {
+                background-color: themed('headerColor');
+            }
+
+            a {
+                transition: 0.2s ease;
+                width: 100%;
+                height: 100%;
+                padding: 0 20px;
+                text-align: center;
+                white-space: nowrap;
+                font-size: 14px;
+
+                &:hover {
+                    cursor: pointer;
+                    @include themify($themes) {
+                        background-color: themed('primaryColor');
+                        color: themed('textColorLightest');
+                    }
+                }
+            }
+        }
+
+        &.toggled {
+            @include themify($themes) {
+                background-color: themed('primaryColor');
+            }
+
+            .title {
+                @include themify($themes) {
+                    color: themed('secondaryColor');
+                }
+            }
+
+            svg path {
+                @include themify($themes) {
+                    fill: themed('secondaryColor');
+                }
+            }
+
+            .drop-down-box-container {
+                display: block;
+            }
+        }
+    }
+}
