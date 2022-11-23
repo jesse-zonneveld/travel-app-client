@@ -14,6 +14,44 @@ import AllRoutes from './routes/AllRoutes';
 import clsx from 'clsx';
 import { useAppDispatch, useAppSelector } from './redux/hooks';
 import { ResponsiveMode, setResponsiveMode } from './redux/slices/ResponsiveSlice';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import {
+    faSearch,
+    faUser,
+    faBell,
+    faComments,
+    faEnvelope,
+    faUsers,
+    faCaretDown,
+    faLock,
+    faEdit,
+    faMoon,
+} from '@fortawesome/free-solid-svg-icons';
+import { fab } from '@fortawesome/free-brands-svg-icons';
+import { faUser as farUser, faKeyboard, faEyeSlash, faLightbulb } from '@fortawesome/free-regular-svg-icons';
+import Footer from './components/layout/footer/Footer';
+
+/* -------------------------------------------------------------------------- */
+
+/* ------------------------------ ICON LIBRARY ------------------------------ */
+
+library.add(
+    fab,
+    faSearch,
+    faUser,
+    faBell,
+    faComments,
+    faEnvelope,
+    faUsers,
+    faCaretDown,
+    farUser,
+    faKeyboard,
+    faEyeSlash,
+    faLightbulb,
+    faLock,
+    faEdit,
+    faMoon,
+);
 
 /* -------------------------------------------------------------------------- */
 
@@ -45,7 +83,7 @@ function App() {
 
     return (
         <div
-            className={clsx('app', {
+            className={clsx('app all-content', {
                 'theme-default': theme.mode === 'default',
                 'theme-light': theme.mode === 'light',
                 'theme-dark': theme.mode === 'dark',
@@ -55,6 +93,7 @@ function App() {
             <div className='main-content'>
                 <AllRoutes />
             </div>
+            <Footer />
         </div>
     );
 }

@@ -13,11 +13,11 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 /* ---------------------------------- TYPES --------------------------------- */
 
 export type ResponsiveMode = 'mobile' | 'tablet' | 'desktop' | null;
-export type AuthRoute = 'login' | 'register';
 
 export interface ResponsiveState {
     mode: ResponsiveMode;
-    authRoute: AuthRoute;
+    isLoginForm: boolean;
+    isAuthFormSwitchActivated: boolean;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -46,7 +46,8 @@ const getInitialRespMode = () => {
 
 const initialState: ResponsiveState = {
     mode: getInitialRespMode(),
-    authRoute: 'login',
+    isLoginForm: true,
+    isAuthFormSwitchActivated: false,
 };
 
 /* -------------------------------------------------------------------------- */
@@ -61,19 +62,23 @@ const responsiveSlice = createSlice({
             console.log('setting responsive mode to ' + action.payload);
             state.mode = action.payload;
         },
-        setAuthRoute: (state, action: PayloadAction<AuthRoute>) => {
-            console.log('setting auth route to ' + action.payload);
-            state.authRoute = action.payload;
+        setIsLoginForm: (state, action: PayloadAction<boolean>) => {
+            console.log('setting is login form to ' + action.payload);
+            state.isLoginForm = action.payload;
+        },
+        setIsAuthFormSwitchActivated: (state, action: PayloadAction<boolean>) => {
+            console.log('setting is auth switch to ' + action.payload);
+            state.isAuthFormSwitchActivated = action.payload;
         },
     },
 });
 
-const { setResponsiveMode, setAuthRoute } = responsiveSlice.actions;
+const { setResponsiveMode, setIsLoginForm, setIsAuthFormSwitchActivated } = responsiveSlice.actions;
 
 /* -------------------------------------------------------------------------- */
 
 /* --------------------------------- EXPORTS -------------------------------- */
 
-export { responsiveSlice, setResponsiveMode, setAuthRoute };
+export { responsiveSlice, setResponsiveMode, setIsLoginForm, setIsAuthFormSwitchActivated };
 
 /* -------------------------------------------------------------------------- */

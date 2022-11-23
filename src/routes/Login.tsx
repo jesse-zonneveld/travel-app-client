@@ -1,7 +1,7 @@
 /**
  * @file routes/Login.tsx
  * @author Jesse Zonneveld
- * @description Login route for mobile
+ * @description Login route for mobile and tablet
  */
 
 /* --------------------------------- IMPORTS -------------------------------- */
@@ -17,7 +17,7 @@ import { useAppSelector } from '../redux/hooks';
 const Login: FC = () => {
     const respMode = useAppSelector((state) => state.responsive.mode);
 
-    return <>{respMode !== 'mobile' ? <Navigate to='/auth' /> : <div>Login</div>}</>;
+    return <>{respMode === 'desktop' ? <Navigate to='/auth' /> : <div>Login</div>}</>;
 };
 
 /* -------------------------------------------------------------------------- */

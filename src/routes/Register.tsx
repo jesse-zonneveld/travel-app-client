@@ -1,7 +1,7 @@
 /**
  * @file routes/Register.tsx
  * @author Jesse Zonneveld
- * @description Register route for mobile
+ * @description Register route for mobile and tablet
  */
 
 /* --------------------------------- IMPORTS -------------------------------- */
@@ -17,7 +17,7 @@ import { useAppSelector } from '../redux/hooks';
 const Register: FC = () => {
     const respMode = useAppSelector((state) => state.responsive.mode);
 
-    return <>{respMode !== 'mobile' ? <Navigate to='/auth' /> : <div>Register</div>}</>;
+    return <>{respMode === 'desktop' ? <Navigate to='/auth' /> : <div>Register</div>}</>;
 };
 
 /* -------------------------------------------------------------------------- */
